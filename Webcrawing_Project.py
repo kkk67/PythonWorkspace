@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 date = date.today()
 
-today = str(date.year) + '년' + str(date.month) + '월' + str(date.day) + '일'
+today = str(date.year) + '년 ' + str(date.month) + '월 ' + str(date.day) + '일'
 now = date.today().strftime('%Y-%m-%d %H:%M:%S')
 
 print("\n       ※ Python Webcrawling Project 1 ※ \n ")
@@ -33,6 +33,7 @@ enter = bs_corona.select("div.status_info > ul > li.info_03 > p")
 death = bs_corona.select("div.status_info > ul > li.info_04 > p")
 
 print(f'-----{today}의 코로나 소식 ----- ')
+print(' ')
 print(f"-->오늘의 신규 확진자 {value[0].text} 명 \n --> 위중증환자 수는 {crisis[0].text} 명  \n  --> 신규 입원은 {enter[0].text} 명  \n   --> 신규 사망 수는 {death[0].text} 명 입니다.")
 print(' ')
 
@@ -51,6 +52,7 @@ for i in range(len(song)):
     song_name.append(song[i].text)
     artist_name.append(artist[i].text)
 print(f'-----{today}의 벅스 음원차트 top100-----')
+print(' ')
 for j in range(0,100):
     if cnt >= 30:
         print("--------------------------------------------------------------------------")
