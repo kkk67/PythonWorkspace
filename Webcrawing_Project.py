@@ -54,7 +54,7 @@ for i in range(len(song)):
 print(f'-----{today}의 벅스 음원차트 top100-----')
 print(' ')
 for j in range(0,100):
-    if cnt >= 30:
+    if cnt >= 20:
         print("--------------------------------------------------------------------------")
         cnt = 0
     print(f"순위 {j+1}위 - 가수 : {artist_name[j].strip()} - 곡명 : {song_name[j]} ")
