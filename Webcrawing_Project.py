@@ -34,7 +34,7 @@ enter = bs_corona.select("div.status_info > ul > li.info_03 > p")
 death = bs_corona.select("div.status_info > ul > li.info_04 > p")
 
 print(f'-----{today}의 코로나 소식 ----- ')
-print(f"확진환자 수는 {value[0].text} 명 위중증환자 수는 {crisis[0].text} 명 \n신규입원은 {enter[0].text} 사망자 수는 {death[0].text} 명 입니다.")
+print(f"-->오늘의 신규 확진자 {value[0].text} 명 \n --> 위중증환자 수는 {crisis[0].text} 명  \n  --> 신규 입원은 {enter[0].text} 명  \n   --> 신규 사망 수는 {death[0].text} 명 입니다.")
 print(' ')
 
 #음악 정보 크롤링
@@ -46,11 +46,16 @@ artist_name = []
 
 song = bs_music.select("p.title > a")
 artist = bs_music.select("p.artist > a")
+cnt = 0
 
 for i in range(len(song)):
     song_name.append(song[i].text)
     artist_name.append(artist[i].text)
 print(f'-----{today}의 벅스 음원차트 top100-----')
 for j in range(0,100):
+    if cnt >= 30:
+        print("--------------------------------------------------------------------------")
+        cnt = 0
     print(f"순위 {j+1}위 - 가수 : {artist_name[j].strip()} - 곡명 : {song_name[j]} ")
+    cnt += 1
 
