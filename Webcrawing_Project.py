@@ -1,5 +1,4 @@
 from datetime import date
-from tkinter import W
 import requests
 from bs4 import BeautifulSoup
 
