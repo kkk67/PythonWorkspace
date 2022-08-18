@@ -1,7 +1,11 @@
 from datetime import date
 import requests
 from bs4 import BeautifulSoup
-
+headers = {
+"User-Agent":
+"'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36'"
+}
+payload = {'param1': '1', 'param2': '2'}
 date = date.today()
 
 today = str(date.year) + '년 ' + str(date.month) + '월 ' + str(date.day) + '일'
@@ -21,6 +25,26 @@ diff = bs_weather.find("span","temperature up")
 
 print(f"서울의 현재 기온은 {temperature[0].text} {climate.text} 어제보다 {diff.text}")
 print(" ")
+
+# 뉴스 헤드라인 크롤링
+r_news = requests.get("https://news.google.com/topstories?hl=ko&gl=KR&ceid=KR:ko,param=payload,headers=header")
+bs_news = BeautifulSoup(r_news.content,"html.parser")
+
+title = bs_news.select("div.xrnccd > article > h3")
+
+news = []
+
+for i in title:
+    titles = i.text
+    news.append(titles)
+
+print(f"-----{today} 오늘의 헤드라인-----")
+print(" ")
+for j in range(len(news)):
+    print(f"--> {news[j]}")
+
+print(" ")
+
 
 
 #코로나 정보 크롤링
